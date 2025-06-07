@@ -15,7 +15,7 @@ def main():
 
         if choice == '1':
             # Prompt for and add an item
-            item = input("Enter the item to add: ")
+            item = input("Enter the item to add: ").strip()
             if item:
                 shopping_list.append(item)
                 print(f"'{item}' has been added to your shopping list.")
@@ -28,7 +28,7 @@ def main():
                 print("Your shopping list is empty.")
                 continue
                 
-            item = input("Enter the item to remove: ")
+            item = input("Enter the item to remove: ").strip()
             if item in shopping_list:
                 shopping_list.remove(item)
                 print(f"'{item}' has been removed from your shopping list.")
