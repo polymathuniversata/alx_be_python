@@ -21,6 +21,30 @@ class Book:
         self.author = author
         self._is_checked_out = False  # Private attribute to track availability
 
+    def check_out(self):
+        """
+        Check out this book if it's available.
+        
+        Returns:
+            bool: True if checkout was successful, False if already checked out
+        """
+        if not self._is_checked_out:
+            self._is_checked_out = True
+            return True
+        return False
+
+    def return_book(self):
+        """
+        Return this book if it's checked out.
+        
+        Returns:
+            bool: True if return was successful, False if not checked out
+        """
+        if self._is_checked_out:
+            self._is_checked_out = False
+            return True
+        return False
+
     def __str__(self):
         """
         Return a string representation of the book.
@@ -59,9 +83,8 @@ class Library:
             bool: True if the book was checked out successfully, False otherwise
         """
         for book in self._books:
-            if book.title == title and not book._is_checked_out:
-                book._is_checked_out = True
-                return True
+            if book.title == title:
+                return book.check_out()
         return False
 
     def return_book(self, title):
@@ -75,9 +98,8 @@ class Library:
             bool: True if the book was returned successfully, False otherwise
         """
         for book in self._books:
-            if book.title == title and book._is_checked_out:
-                book._is_checked_out = False
-                return True
+            if book.title == title:
+                return book.return_book()
         return False
 
     def list_available_books(self):
